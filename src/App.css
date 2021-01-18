@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+/* Style for club cards
+---------------------------*/
+div.clubItem {
+  width: 18%;
+  display: inline-block;
+  vertical-align: top;
+}
+h2.clubName {
+  font-family: "Archivo Black", sans-serif;
+  font-size: 18pt;
+  text-align: center;
+}
