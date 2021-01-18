@@ -49,13 +49,14 @@ div.clubItem p {
 }
 
 div.clubItem {
-  width: 23%;
+  width: 22%;
   display: inline-block;
   vertical-align: top;
   border: 0;
   padding: 0.5%;
-  /* margin: 0.5%; */
-  border-right: 1px solid #49326b;
+  margin: 0.5%;
+  border-radius: 5%;
+  border: 1px solid #49326b;
 }
 h2.clubName {
   font-family: "Archivo Black", sans-serif;
@@ -75,4 +76,7 @@ p.contactPerson {
   display: inline-block;
   padding: 0 5% 0 5%;
   font-size: 16pt;
+}
+img.clubCoverImage {
+  width: 100%;
 }
