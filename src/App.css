@@ -38,13 +38,41 @@
 }
 /* Style for club cards
 ---------------------------*/
+div.clubItem h3 {
+  font-size: 18pt;
+  margin: 0;
+  padding: 0;
+  color: #49326b;
+}
+div.clubItem p {
+  margin: 1% 0.5% 1.5% 0.5%;
+}
+
 div.clubItem {
-  width: 18%;
+  width: 23%;
   display: inline-block;
   vertical-align: top;
+  border: 0;
+  padding: 0.5%;
+  /* margin: 0.5%; */
+  border-right: 1px solid #49326b;
 }
 h2.clubName {
   font-family: "Archivo Black", sans-serif;
-  font-size: 18pt;
+  font-size: 24pt;
   text-align: center;
+  color: #49326b;
+}
+p.clubDescription {
+  font-size: 18pt;
+}
+p.meetingPlace {
+  font-size: 16pt;
+  padding: 0 5% 0 5%;
+}
+p.contactPerson {
+  width: 90%;
+  display: inline-block;
+  padding: 0 5% 0 5%;
+  font-size: 16pt;
 }

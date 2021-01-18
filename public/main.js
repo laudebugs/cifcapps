@@ -23,12 +23,12 @@ $(document).ready(function () {
             class= "clubItem"
           >
             <h2 class="clubName">${item["name"]}</h2>
-            <p>${item["description"]}</p>
-            <h3>Meeting Place</h3>
-            <p>${item["meeting place"]}</p>
+            <p class="clubDescription">${item["description"]}</p>
+            <h3>Meeting Place:</h3>
+            <p class="meetingPlace">${item["meeting place"]}</p>
 
-            <h3>Contact</h3>
-            <p>${item["main contact person "]}</p>
+            <h3>Contact:</h3>
+            <p class="contactPerson">${item["main contact person "]}</p>
             
           </div>`;
         })
@@ -39,6 +39,25 @@ $(document).ready(function () {
       clubsDiv.innerHTML = clubList;
       console.log(clubsDiv);
       //   cal.innerHTML = events;
+
+      /**
+       * Add the styles
+       */
+      // var style = document.createElement("style");
+      // style.innerHTML = `
+      //     div.clubItem {
+      //     width: 18%;
+      //     display: inline-block;
+      //     vertical-align: top;
+      //   }
+      //   h2.clubName {
+      //     font-family: "Archivo Black", sans-serif;
+      //     font-size: 18pt;
+      //     text-align: center;
+      //   }
+
+      //   `;
+      // document.head.appendChild(style);
     })
   );
 });
