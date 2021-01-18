@@ -80,3 +80,9 @@ p.contactPerson {
 img.clubCoverImage {
   width: 100%;
 }
+img.icon {
+  width: 30px;
+}
+div.links {
+  text-align: center;
+}
