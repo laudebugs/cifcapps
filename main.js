@@ -64,8 +64,7 @@ $(document).ready(function () {
            */
           function checkWebsite() {
             if (club["Website"]) {
-              return `
-            <a href=${club["Website"]} target="_blank">
+              return `<a href=${club["Website"]} target="_blank">
               <img class="icon" src="https://raw.githubusercontent.com/lbugasu/cifcapps/master/src/link.svg"/>
             </a>`;
             } else {
