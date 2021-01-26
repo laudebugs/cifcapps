@@ -3,7 +3,7 @@
  * where the script isn't being run
  * Reference: https://stackoverflow.com/questions/54492245/javascript-only-being-called-once-in-squarespace
  */
-module.exports = {
+const scriptFunctions = {
   runScript: function () {
     /**
      * The div element with the class loading will only be present if
@@ -304,3 +304,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = scriptFunctions;
