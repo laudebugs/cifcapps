@@ -4,7 +4,7 @@
  * Reference: https://stackoverflow.com/questions/54492245/javascript-only-being-called-once-in-squarespace
  */
 module.exports = {
-  runScript() {
+  runScript: function () {
     /**
      * The div element with the class loading will only be present if
      * the javascript hasn't removed it
