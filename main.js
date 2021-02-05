@@ -35,15 +35,12 @@ $(document).ready(function () {
    * Get the data from the clubs api.
    * Find info about the api here: https://github.com/lbugasu/cifc-api
    */
-  const clubs = fetch(
-    "https://lbugasu-cors-proxy.herokuapp.com/https://nyucifc.herokuapp.com/clubs",
-    {
-      method: "GET",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-    }
-  );
+  const clubs = fetch("https://cifc.tamaduni.org/clubs", {
+    method: "GET",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+  });
   /**
    * Parse the results which are returned as an array of json objects
    */
@@ -228,20 +225,28 @@ $(document).ready(function () {
           let buttons = [...$(".button")].filter(
             (tag) => !tag.classList.contains("selected")
           );
+          console.log(buttons);
           /**
            * If no element is selected, display all clubs
            */
           if (buttons.length === 0) {
             $(`div.clubItem`).css("display", "inline-block");
           } else {
+            // hide the elements
             $(`div.clubItem`).css("display", "none");
 
             /**
              * only display the selected elements that fit the selected element
              */
+            // Generate classlist
+            let list = [];
+            let str = "";
             buttons.map((btn) => {
-              $(`div.${btn.classList[0]}`).css("display", "inline-block");
+              list.push(btn.classList[0]);
+              str += `.${btn.classList[0]}`;
             });
+            console.log(str);
+            $(`div${str}`).css("display", "inline-block");
           }
         });
       })
@@ -255,7 +260,7 @@ $(document).ready(function () {
         imageDivs.map((div) => {
           const link = div.attributes.imageLink.value;
           const getPhoto = fetch(
-            `https://lbugasu-cors-proxy.herokuapp.com/https://nyucifc.herokuapp.com/fbcover?link=${link}`,
+            `https://cifc.tamaduni.org/fbcover?link=${link}`,
             {
               method: "GET",
               mode: "cors",
