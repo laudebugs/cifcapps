@@ -245,7 +245,6 @@ $(document).ready(function () {
               list.push(btn.classList[0]);
               str += `.${btn.classList[0]}`;
             });
-            console.log(str);
             $(`div${str}`).css("display", "inline-block");
           }
         });
