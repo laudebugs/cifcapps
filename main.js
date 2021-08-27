@@ -35,7 +35,7 @@ $(document).ready(function () {
    * Get the data from the clubs api.
    * Find info about the api here: https://github.com/lbugasu/cifc-api
    */
-  const clubs = fetch("https://cifc.tamaduni.org/clubs", {
+  const clubs = fetch("https://cifc-api.herokuapp.com/clubs", {
     method: "GET",
     mode: "cors",
     cache: "no-cache",
@@ -47,9 +47,10 @@ $(document).ready(function () {
   clubs.then((data) => {
     data
       .json() // parse the result to a json object
-      .then((clubs) => {
+      .then((res) => {
+        console.log(res.data);
         const listOfTags = [];
-        clubs.map((club) => {
+        res.data.map((club) => {
           /**
            * For each club, create a div element to place it in
            */
@@ -60,8 +61,8 @@ $(document).ready(function () {
            * else, return an empty span
            */
           function checkWebsite() {
-            if (club["Website"]) {
-              return `<a href=${club["Website"]} target="_blank">
+            if (club[8]) {
+              return `<a href=${club[8]} target="_blank">
               <img class="icon" src="https://raw.githubusercontent.com/lbugasu/cifcapps/master/images/link_icon.png"/>
             </a>`;
             } else {
@@ -74,8 +75,8 @@ $(document).ready(function () {
            * else return an empty span
            */
           function checkFB() {
-            if (club["Facebook"]) {
-              return `<a href="${club["Facebook"]}" target="_blank">
+            if (club[9]) {
+              return `<a href="${club[9]}" target="_blank">
                       <img class="icon"/ src= "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Facebook_circle_pictogram.svg/1200px-Facebook_circle_pictogram.svg.png">
                     </a>`;
             } else {
@@ -87,7 +88,7 @@ $(document).ready(function () {
            * create the tags listed for each club
            */
           // get the string of tags and split on comma
-          let tagList = club["Tags"].split(",");
+          let tagList = club[1].split(", ");
           // initialize a tagSection element to append html
           let tagSection = ``;
           // initialize a string to hold the tag class string that will be appended to the club element
@@ -103,26 +104,28 @@ $(document).ready(function () {
           ${tag}
           </span>`;
           });
-
+          const fillerImage = 'https://mcdn.wallpapersafari.com/medium/36/29/9hlsuO.png); height: 175px'
           // Add the class names and the tags associated with the club to the club element
           ele.className = "clubItem" + tags;
           ele.innerHTML = `
-                <h2 class="clubName">${club["Name"]}</h2>
+                <h2 class="clubName">${club[0]}</h2>
                     <div class="tagList">${tagSection}</div>
-                    <div class="placeImageHere clubCoverImage" imageLink=${
-                      club["Facebook"]
-                    }></div>
-                    <p class="clubDescription">${club["Description"]}</p>
-                    <h4>Meeting Time:</h4>
-                    <p class="meetingPlace">${
-                      club["Weekly Meeting Time 2020 - 2021"]
-                    }</p>
+                    <div class="placeImageHere clubCoverImage" 
+                      style="background-image: url(${!!club[10]?club[10]:fillerImage}); height: 175px"
+                      
+                    >
+
+                    </div>
+                    <p class="clubDescription">${club[2]}</p>
+                    <h4>Meeting Time & Location:</h4>
+                    <p class="meetingPlace"><b>Time:</b> ${club[4]}</p>
+                    <p class="meetingPlace"><b>Location:</b> ${club[5]}</p>
 
                     <h4>Contact:</h4>
                     <p class="contactPerson">${
-                      club["Main Contact person"]
-                    }<br/><a href="mailto:${club["Email"]}">${
-            club["Email"]
+                      club[6]
+                    }<br/><a href="mailto:${club[7]}">${
+            club[7]
           } ✉ <a></p>
                     <div class="links">
                     ${checkFB()}
@@ -225,7 +228,6 @@ $(document).ready(function () {
           let buttons = [...$(".button")].filter(
             (tag) => !tag.classList.contains("selected")
           );
-          console.log(buttons);
           /**
            * If no element is selected, display all clubs
            */
@@ -255,26 +257,28 @@ $(document).ready(function () {
        */
       .then(() => {
         // get all the elements where we are going to place an image
-        const imageDivs = [...$(".placeImageHere")];
-        imageDivs.map((div) => {
-          const link = div.attributes.imageLink.value;
-          const getPhoto = fetch(
-            `https://cifc.tamaduni.org/fbcover?link=${link}`,
-            {
-              method: "GET",
-              mode: "cors",
-              cache: "no-cache",
-              credentials: "same-origin",
-            }
-          );
-          getPhoto.then((result) => {
-            result.json().then((object) => {
-              let link = object.coverPhotoLink;
-              div.style.backgroundImage = `url("${link}")`;
-              div.style.height = "175px";
-            });
-          });
-        });
+        // const imageDivs = [...$(".placeImageHere")];
+        // imageDivs.map((div) => {
+        //   const link = div.attributes.imageLink.value;
+        //   console.log(link)
+        //   const getPhoto = fetch(
+        //     `https://cifc-api.herokuapp.com/fbcover?link=${link}`,
+        //     {
+        //       method: "GET",
+        //       mode: "cors",
+        //       cache: "no-cache",
+        //       credentials: "same-origin",
+        //     }
+        //   );
+        //   getPhoto.then((result) => {
+        //     console.log(result);
+        //     result.json().then((object) => {
+        //       let link = object.coverPhotoLink;
+        //       div.style.backgroundImage = `url("${link}")`;
+        //       div.style.height = "175px";
+        //     });
+        //   });
+        // });
       });
   });
 });
