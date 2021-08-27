@@ -251,35 +251,6 @@ $(document).ready(function () {
           }
         });
       })
-      /**
-       * After all the club data has been loaded,
-       * call the api to get the Facebook cover image on each club
-       */
-      .then(() => {
-        // get all the elements where we are going to place an image
-        // const imageDivs = [...$(".placeImageHere")];
-        // imageDivs.map((div) => {
-        //   const link = div.attributes.imageLink.value;
-        //   console.log(link)
-        //   const getPhoto = fetch(
-        //     `https://cifc-api.herokuapp.com/fbcover?link=${link}`,
-        //     {
-        //       method: "GET",
-        //       mode: "cors",
-        //       cache: "no-cache",
-        //       credentials: "same-origin",
-        //     }
-        //   );
-        //   getPhoto.then((result) => {
-        //     console.log(result);
-        //     result.json().then((object) => {
-        //       let link = object.coverPhotoLink;
-        //       div.style.backgroundImage = `url("${link}")`;
-        //       div.style.height = "175px";
-        //     });
-        //   });
-        // });
-      });
   });
 });
 
