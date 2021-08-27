@@ -44,6 +44,8 @@ $(document).ready(function () {
   /**
    * Parse the results which are returned as an array of json objects
    */
+   const fillerImage = 'https://mcdn.wallpapersafari.com/medium/36/29/9hlsuO.png'
+
   clubs.then((data) => {
     data
       .json() // parse the result to a json object
@@ -61,10 +63,10 @@ $(document).ready(function () {
            * else, return an empty span
            */
           function checkWebsite() {
-            if (club[8]) {
+            if (club[8] && club[8] != fillerImage) {
               return `<a href=${club[8]} target="_blank">
-              <img class="icon" src="https://raw.githubusercontent.com/lbugasu/cifcapps/master/images/link_icon.png"/>
-            </a>`;
+                        <img class="icon" src="https://raw.githubusercontent.com/lbugasu/cifcapps/master/images/link_icon.png"/>
+                      </a>`;
             } else {
               return `<span></span>`;
             }
@@ -104,34 +106,28 @@ $(document).ready(function () {
           ${tag}
           </span>`;
           });
-          const fillerImage = 'https://mcdn.wallpapersafari.com/medium/36/29/9hlsuO.png); height: 175px'
           // Add the class names and the tags associated with the club to the club element
           ele.className = "clubItem" + tags;
           ele.innerHTML = `
                 <h2 class="clubName">${club[0]}</h2>
                     <div class="tagList">${tagSection}</div>
                     <div class="placeImageHere clubCoverImage" 
-                      style="background-image: url(${!!club[10]?club[10]:fillerImage}); height: 175px"
-                      
-                    >
-
+                      style="background-image: url(${!!club[10]?club[10]:fillerImage}); height: 175px">
                     </div>
                     <p class="clubDescription">${club[2]}</p>
                     <h4>Meeting Time & Location:</h4>
-                    <p class="meetingPlace"><b>Time:</b> ${club[4]}</p>
-                    <p class="meetingPlace"><b>Location:</b> ${club[5]}</p>
+                    <p class="meetingPlace"><b>Time:</b> ${club[4]?club[4]:'N/A'}</p>
+                    <p class="meetingPlace"><b>Location:</b> ${club[5]? club[5]:'N/A'}</p>
 
                     <h4>Contact:</h4>
                     <p class="contactPerson">${
-                      club[6]
+                      club[6]?club[6]:"N/A"
                     }<br/><a href="mailto:${club[7]}">${
             club[7]
-          } ✉ <a></p>
+          } ✉ </a></p>
                     <div class="links">
                     ${checkFB()}
                     ${checkWebsite()}
-                    
-                    
                 </div>`;
           clubsDiv.appendChild(ele);
         });
